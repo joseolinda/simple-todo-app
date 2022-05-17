@@ -181,7 +181,12 @@ input, li {
     text-align: center;
     font-style: italic;
     color: #999!important;
+}
+.lista-vazia:hover {
     cursor: default !important;
+    border-color: #dedede;
+    box-shadow: none !important; 
+    
 }
 
 /* Rodapé */
