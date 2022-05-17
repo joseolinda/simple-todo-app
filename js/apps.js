@@ -1,5 +1,5 @@
 const btnAddTarefa = document.querySelector("#add_tarefa")
-const lstAFazer = document.querySelector("#a_fazer")
+const lstAFazer = document.querySelector("#a-fazer")
 const lstFeito = document.querySelector("#feito")
 let listaAFazerEstaVazia = true
 let listaFeitoEstaVazia = true
@@ -7,9 +7,9 @@ let listaFeitoEstaVazia = true
 const adicionarTarefa = function(event) {
     event.preventDefault()
 
-    const textoTarefa = document.querySelector("#tarefa").value
+    const textoTarefa = document.querySelector("#tarefa")
 
-    if (textoTarefa.length < 1) {
+    if (textoTarefa.value.length < 1) {
         return;
     }
 
@@ -18,7 +18,7 @@ const adicionarTarefa = function(event) {
     const textoNovaTarefa = document.createElement("span")
     
     iconeNovaTarefa.className = "fa fa-square-o"
-    textoNovaTarefa.innerText = textoTarefa
+    textoNovaTarefa.innerText = textoTarefa.value
 
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
@@ -30,6 +30,8 @@ const adicionarTarefa = function(event) {
     }
 
     listaAFazerEstaVazia = false
+    textoTarefa.value = ""
+    textoTarefa.focus()
 }
 
 const moverParaFeito = function(ev) {
@@ -55,13 +57,19 @@ const moverParaFeito = function(ev) {
     const novaTarefa = document.createElement("li")
     const iconeNovaTarefa = document.createElement("i")
     const textoNovaTarefa = document.createElement("span")
+    const iconeDeleteTarefa = document.createElement("i")
     
     iconeNovaTarefa.className = "fa fa-check-square-o"
     textoNovaTarefa.innerText = textoTarefa
+    iconeDeleteTarefa.className = "fa fa-trash-o delete-icon"
 
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
+    novaTarefa.appendChild(iconeDeleteTarefa)
     lstFeito.appendChild(novaTarefa)
+
+    /* Anexar avento de remover tarefa feita */
+    iconeDeleteTarefa.addEventListener("click", removerFeito)
 
     lstAFazer.removeChild(tarefa)
     listaVazia("Adicione tarefas à lista")
@@ -94,6 +102,28 @@ const limparListaFeito = function() {
 
         lstFeito.removeChild(itemVazio)
         listaFeitoEstaVazia = false
+    }
+}
+
+const removerFeito = function(ev) {
+    const item = ev.target.parentElement
+    lstFeito.removeChild(item)
+
+    if(lstFeito.childElementCount === 0) {
+        const textoTarefa = "As tarefas concluídas foram removidas"
+
+        const novaTarefa = document.createElement("li")
+        
+        novaTarefa.innerText = textoTarefa
+
+        novaTarefa.classList.add("lista-vazia")
+        novaTarefa.onclick = function(e) {
+            e.stopPropagation()
+            return false
+        }
+
+        lstFeito.appendChild(novaTarefa)
+        listaFeitoEstaVazia = true
     }
 }
 
