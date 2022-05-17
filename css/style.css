@@ -239,10 +239,14 @@ footer h1 span {
     .lista_de_tarefas {
         margin: 20px 30px;
         width: calc(100vw - 60px);
+        padding: 20px;
         height: auto;
     }
     .lista_de_tarefas h1 {
         margin-bottom: 100px;
+    }
+    input::placeholder {
+        font-size: 1rem!important;
     }
     footer {
         position: absolute;
