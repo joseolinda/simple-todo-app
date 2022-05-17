@@ -4,12 +4,12 @@ const lstFeito = document.querySelector("#feito")
 let listaAFazerEstaVazia = true
 let listaFeitoEstaVazia = true
 
-const adicionarTarefa = function(event) {
-    event.preventDefault()
+const adicionarTarefa = function(event = null, el = false) {
+    if(event) event.preventDefault()
 
-    const textoTarefa = document.querySelector("#tarefa")
+    const textoTarefa = el || document.querySelector("#tarefa").value
 
-    if (textoTarefa.value.length < 1) {
+    if (textoTarefa.length < 1) {
         return;
     }
 
@@ -18,7 +18,7 @@ const adicionarTarefa = function(event) {
     const textoNovaTarefa = document.createElement("span")
     
     iconeNovaTarefa.className = "fa fa-square-o"
-    textoNovaTarefa.innerText = textoTarefa.value
+    textoNovaTarefa.innerText = textoTarefa
 
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
@@ -30,8 +30,10 @@ const adicionarTarefa = function(event) {
     }
 
     listaAFazerEstaVazia = false
-    textoTarefa.value = ""
-    textoTarefa.focus()
+    document.querySelector("#tarefa").value = ""
+    document.querySelector("#tarefa").focus()
+
+    localStorage.setItem('lista-a-fazer', toJSON(lstAFazer))
 }
 
 const moverParaFeito = function(ev) {
@@ -66,14 +68,22 @@ const moverParaFeito = function(ev) {
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
     novaTarefa.appendChild(iconeDeleteTarefa)
+
+    limparListaFeito()
     lstFeito.appendChild(novaTarefa)
+
+    // Salvar no LocalStorage
+    localStorage.setItem('lista-feito', toJSON(lstFeito))
 
     /* Anexar avento de remover tarefa feita */
     iconeDeleteTarefa.addEventListener("click", removerFeito)
 
     lstAFazer.removeChild(tarefa)
+
+    // Salvar no LocalStorage
+    localStorage.setItem('lista-a-fazer', toJSON(lstAFazer))
+
     listaVazia("Adicione tarefas à lista")
-    limparListaFeito()
 }
 
 const listaVazia = function(texto) {
@@ -109,6 +119,9 @@ const removerFeito = function(ev) {
     const item = ev.target.parentElement
     lstFeito.removeChild(item)
 
+    // Salvar no LocalStorage
+    localStorage.setItem('lista-feito', toJSON(lstFeito))
+
     if(lstFeito.childElementCount === 0) {
         const textoTarefa = "As tarefas concluídas foram removidas"
 
@@ -124,6 +137,45 @@ const removerFeito = function(ev) {
 
         lstFeito.appendChild(novaTarefa)
         listaFeitoEstaVazia = true
+    }
+}
+
+// Criar método para converter lista em objeto JSON
+const toJSON = function(HTMLObject) {
+    array_of_html = []
+    for(let x of HTMLObject.children)
+        array_of_html.push(x.innerText)
+
+    return JSON.stringify(array_of_html)
+}
+
+// LocalStorage Suporte
+if (localStorage.getItem('lista-a-fazer').length > 0) {
+    const HTMLObject = JSON.parse(localStorage.getItem('lista-a-fazer'))
+    for(let li of HTMLObject) {
+        adicionarTarefa(null, li)
+    }
+}
+if (localStorage.getItem('lista-feito').length > 0) {
+    const HTMLObject = JSON.parse(localStorage.getItem('lista-feito'))
+    for(let li of HTMLObject) {
+        const novaTarefa = document.createElement("li")
+        const iconeNovaTarefa = document.createElement("i")
+        const textoNovaTarefa = document.createElement("span")
+        const iconeDeleteTarefa = document.createElement("i")
+        
+        iconeNovaTarefa.className = "fa fa-check-square-o"
+        textoNovaTarefa.innerText = li
+        iconeDeleteTarefa.className = "fa fa-trash-o delete-icon"
+
+        novaTarefa.appendChild(iconeNovaTarefa)
+        novaTarefa.appendChild(textoNovaTarefa)
+        novaTarefa.appendChild(iconeDeleteTarefa)
+
+        limparListaFeito()
+        lstFeito.appendChild(novaTarefa)
+        /* Anexar avento de remover tarefa feita */
+        iconeDeleteTarefa.addEventListener("click", removerFeito)
     }
 }
 
