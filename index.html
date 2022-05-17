@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Lista de tarefas</h1>
-    <form>
-        <label for="tarefa">Nova Tarefa</label>
-        <input type="text" id="tarefa">
-        <input type="submit" id="add_tarefa" value="adicionar">
-    </form>
-    <h2>A fazer:</h2>
-    <ul id="a_fazer">
-        <li id="tarefa-1">Tarefa 02</li>
-    </ul>
-    <h2>Feito</h2>
-    <ul id="feito">
-        <li>Tarefa 01</li>
-    </ul>
+    <div class="lista_de_tarefas">
+        <h1>Lista de tarefas</h1>
+        <form>
+            <label for="tarefa">Nova Tarefa</label>
+            <input type="text" id="tarefa" autocomplete="off">
+            <button type="submit" id="add_tarefa"><span>Nova Tarefa</span><i class="fa fa-plus-square"></i></button>
+        </form>
+        <h2>A fazer:</h2>
+        <ul id="a_fazer">
+            <li class="lista-vazia">Adicione tarefas à lista</li>
+        </ul>
+        <h2>Feito:</h2>
+        <ul id="feito">
+            <li class="lista-vazia">Nenhuma tarefa concluída</li>
+        </ul>
+    </div>
 
     <script src="js/apps.js"></script>
 </body>

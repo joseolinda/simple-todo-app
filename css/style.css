@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* Variáveis */
+:root {
+    --dark: #2A1945;
+    --darkgray: #545454;
+    --purple: #8e54e9;
+    --blue: #4776E6;
+    --orange: 	#E98E54;
+    --green: 	#54E98E;
+    --purple-shadow: #7a49a5;
+    --lightpurple: #F3EDFC;
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    border: none;
+    background: var(--blue);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, var(--purple), var(--blue));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, var(--purple), var(--blue)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-height: 100vh;
+}
+label {
+    display: none;
+}
+h1, h2 {
+    font-family: 'Raleway', sans-serif;
+}
+
+input, li {
+    font-size: 1.2rem;
+    font-family: 'Jost', sans-serif;
+}
+
+/* Box */
+.lista_de_tarefas {
+    margin: 60px auto 0;
+    padding: 20px 40px 60px;
+    background: var(--lightpurple);
+    width: 520px;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Header */
+.lista_de_tarefas h1 {
+    text-transform: uppercase;
+    color: var(--darkgray);
+    text-align: center;
+    padding: 20px 0 10px;
+    font-size: 1.2rem;
+}
+
+/* Form */
+.lista_de_tarefas input[type=text] {
+    display: block;
+    padding: 10px 60px 10px 20px;
+    margin: 20px 0;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--purple-shadow);
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: #545454;
+    font-weight: 300;
+    border-radius: 6px;
+}
+
+.lista_de_tarefas input[type=text]:focus {
+    border-bottom: 2px solid var(--blue);
+    outline: none;
+}
+
+.lista_de_tarefas button[type=submit] span {
+    display: none;
+}
+
+.lista_de_tarefas button[type=submit] {
+    display: block;
+    font-size: 2rem;
+    background: #fff;
+    border: none;
+    position: absolute;
+    top: 99px;
+    right: 45px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.lista_de_tarefas button[type=submit] i {
+    color: var(--purple-shadow) !important;
+}
+
+/* Títulos das listas */
+.lista_de_tarefas h2 {
+    text-transform: uppercase;
+    color: var(--darkgray);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8rem;
+    background: var(--lightpurple);
+    margin: 0 auto;
+    width: 100px;
+    transform-style: preserve-3d;
+}
+.lista_de_tarefas h2::after {
+    content: " ";
+    display: block;
+    width: 300%;
+    border-bottom: 2px solid #ccc;
+    margin-top: -9px;
+    margin-left: -100%;
+
+    transform: translateZ(-1px);
+}
+
+/* Itens */
+.lista_de_tarefas ul {
+    padding-top: 20px;
+}
+
+.lista_de_tarefas ul li {
+    list-style: none;
+    display: block;
+    border: thin solid #dedede !important;
+    padding: 15px 15px 15px 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 6px;
+}
+.lista_de_tarefas ul li span {
+    margin-left: 10px;
+}
+
+.lista_de_tarefas ul#feito li {
+    color: #999;
+}
+
+.lista_de_tarefas ul#feito li span {
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+/* Lista Vazia */
+.lista-vazia {
+    opacity: 0.8;
+    text-align: center;
+    font-style: italic;
+    color: #999!important;
+}
