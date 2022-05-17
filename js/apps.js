@@ -150,13 +150,13 @@ const toJSON = function(HTMLObject) {
 }
 
 // LocalStorage Suporte
-if (localStorage.getItem('lista-a-fazer').length > 0) {
+if (localStorage.getItem('lista-a-fazer')) {
     const HTMLObject = JSON.parse(localStorage.getItem('lista-a-fazer'))
     for(let li of HTMLObject) {
         adicionarTarefa(null, li)
     }
 }
-if (localStorage.getItem('lista-feito').length > 0) {
+if (localStorage.getItem('lista-feito')) {
     const HTMLObject = JSON.parse(localStorage.getItem('lista-feito'))
     for(let li of HTMLObject) {
         const novaTarefa = document.createElement("li")
