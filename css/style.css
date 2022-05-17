@@ -9,7 +9,8 @@
     --purple: #8e54e9;
     --blue: #4776E6;
     --orange: 	#E98E54;
-    --green: 	#54E98E;
+    --lightgreen: 	#54E98E;
+    --green: 	#2dbe65;
     --purple-shadow: #7a49a5;
     --lightpurple: #F3EDFC;
 }
@@ -121,6 +122,20 @@ input, li {
     margin-left: -100%;
 
     transform: translateZ(-1px);
+}
+
+.lista_de_tarefas #titulo-a-fazer {
+    color: var(--orange);
+}
+.lista_de_tarefas #titulo-a-fazer::after {
+    border-bottom-color: var(--orange);
+}
+
+.lista_de_tarefas #titulo-feito {
+    color: var(--green);
+}
+.lista_de_tarefas #titulo-feito::after {
+    border-bottom-color: var(--green);
 }
 
 /* Itens */
