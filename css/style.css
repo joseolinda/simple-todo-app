@@ -27,11 +27,12 @@ html, body {
     background: -webkit-linear-gradient(to bottom, var(--purple), var(--blue));  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, var(--purple), var(--blue)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     min-height: 100vh;
+    max-height: 100vh;
 }
 label {
     display: none;
 }
-h1, h2 {
+.lista_de_tarefas h1, .lista_de_tarefas h2 {
     font-family: 'Raleway', sans-serif;
 }
 
@@ -157,4 +158,21 @@ input, li {
     text-align: center;
     font-style: italic;
     color: #999!important;
+}
+
+/* Rodapé */
+footer {
+    margin: 60px auto 0;
+    width: 520px;
+    text-align: center;
+}
+footer h1 span {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    padding: 10px;
+    text-transform: uppercase;
+    color: var(--lightpurple);
+    font-weight: 400;
+    letter-spacing: 1px;
 }
