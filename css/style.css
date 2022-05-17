@@ -9,6 +9,7 @@
     --purple: #8e54e9;
     --blue: #4776E6;
     --orange: 	#E98E54;
+    --dark-orange: #d65003;
     --lightgreen: 	#54E98E;
     --green: 	#2dbe65;
     --purple-shadow: #7a49a5;
@@ -143,6 +144,7 @@ input, li {
 }
 
 .lista_de_tarefas ul li {
+    position: relative;
     box-sizing: border-box;
     list-style: none;
     display: block;
@@ -173,6 +175,22 @@ input, li {
 .lista_de_tarefas ul#feito li span {
     font-style: italic;
     text-decoration: line-through;
+}
+
+/* Deletar item */
+.delete-icon {
+    display: inline-block;
+    position: absolute;
+    color: #999;
+    font-size: 1.5rem;
+    right: 6px;
+    top: 7px;
+    padding: 10px;
+    transition: color .5s;
+}
+.delete-icon:hover {
+    cursor: pointer;
+    color: var(--dark-orange);
 }
 
 /* Lista Vazia */
