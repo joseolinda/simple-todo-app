@@ -55,6 +55,7 @@ input, li {
     border-radius: 10px;
     position: relative;
     transition: height 0.5s;
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.45) 0px 50px 100px -20px, rgba(0, 0, 0, 0.6) 0px 30px 30px -30px;
 }
 
 /* Header */
@@ -72,20 +73,21 @@ form {
 }
 .lista_de_tarefas input[type=text] {
     display: block;
-    padding: 10px 60px 10px 20px;
-    margin: 20px 0;
+    padding: 20px 60px 20px 20px;
+    margin: 40px 0;
     width: 100%;
     border: none;
-    border-bottom: 2px solid var(--purple-shadow);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 1.5;
     color: #545454;
     font-weight: 300;
     border-radius: 6px;
+    transition: box-shadow 0.8s;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 
 .lista_de_tarefas input[type=text]:focus {
-    border-bottom: 2px solid var(--blue);
     outline: none;
 }
 
@@ -99,8 +101,8 @@ form {
     background: #fff;
     border: none;
     position: absolute;
-    top: 8px;
-    right: 3px;
+    top: 12px;
+    right: 5px;
     cursor: pointer;
     padding: 5px 10px;
 }
@@ -117,10 +119,11 @@ form {
     padding: 10px 0;
     font-size: 0.8rem;
     background: var(--lightpurple);
-    margin: 0 auto;
+    margin: 40px auto 0;
     width: 100px;
     transform-style: preserve-3d;
 }
+
 .lista_de_tarefas h2::after {
     content: " ";
     display: block;
@@ -157,14 +160,14 @@ form {
     list-style: none;
     display: block;
     -webkit-user-select: none;
-    border: thin solid #dedede;
     padding: 15px 15px 15px 30px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 6px;
     font-weight: 300;
     color: var(--dark);
     margin-bottom: 6px;
-    transition : border 500ms ease-out, box-shadow .9s;
+    transition : box-shadow .3s;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .lista_de_tarefas ul li span {
@@ -173,8 +176,7 @@ form {
 
 .lista_de_tarefas ul#a-fazer li:hover {
     cursor: pointer;
-    border-color: #fff;
-    box-shadow: 0 0 5px var(--orange); 
+    box-shadow: var(--orange) 0px 3px 5px;
 }
 
 .lista_de_tarefas ul#feito li {
@@ -204,16 +206,25 @@ form {
 
 /* Lista Vazia */
 .lista-vazia {
-    opacity: 0.8;
+    background: var(--lightpurple) !important;
     text-align: center;
     font-style: italic;
     color: #999!important;
+    box-shadow: none !important; 
+    position: relative;
+    padding-top: 50px !important;
 }
 .lista-vazia:hover {
     cursor: default !important;
-    border-color: #dedede;
-    box-shadow: none !important; 
-    
+    box-shadow: none !important;    
+}
+.lista-vazia i {
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.2;
+    top: 0;
+    left: 47%;
+    margin: 0 auto;
 }
 
 /* Rodapé */
@@ -237,8 +248,8 @@ footer h1 span {
 
 @media (max-width: 650px) {
     .lista_de_tarefas {
-        margin: 20px 30px;
-        width: calc(100vw - 60px);
+        margin: 40px 10px 20px;
+        width: calc(100vw - 40px);
         padding: 20px;
         height: auto;
     }

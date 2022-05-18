@@ -92,7 +92,11 @@ const listaVazia = function(texto) {
         const textoTarefa = texto || "Adicione tarefas à lista"
 
         const novaTarefa = document.createElement("li")
-        
+        const iconeListaVazia = document.createElement("i")
+
+        iconeListaVazia.classList.add("fa")
+        iconeListaVazia.classList.add("fa-file-text")
+
         novaTarefa.innerText = textoTarefa
 
         novaTarefa.classList.add("lista-vazia")
@@ -100,7 +104,8 @@ const listaVazia = function(texto) {
             e.stopPropagation()
             return false
         }
-
+        
+        novaTarefa.appendChild(iconeListaVazia)
         lstAFazer.appendChild(novaTarefa)
         listaAFazerEstaVazia = true
     }
@@ -126,6 +131,10 @@ const removerFeito = function(ev) {
         const textoTarefa = "As tarefas concluídas foram removidas"
 
         const novaTarefa = document.createElement("li")
+        const iconeListaVazia = document.createElement("i")
+
+        iconeListaVazia.classList.add("fa")
+        iconeListaVazia.classList.add("fa-file-text-o")
         
         novaTarefa.innerText = textoTarefa
 
@@ -135,6 +144,7 @@ const removerFeito = function(ev) {
             return false
         }
 
+        novaTarefa.appendChild(iconeListaVazia)
         lstFeito.appendChild(novaTarefa)
         listaFeitoEstaVazia = true
     }
