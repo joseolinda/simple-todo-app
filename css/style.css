@@ -249,7 +249,7 @@ footer h1 span {
 @media (max-width: 650px) {
     .lista_de_tarefas {
         margin: 40px 10px 20px;
-        width: calc(100vw - 40px);
+        width: calc(100vw - 20px);
         padding: 20px;
         height: auto;
     }
