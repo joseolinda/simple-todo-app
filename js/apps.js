@@ -65,6 +65,13 @@ const moverParaFeito = function(ev) {
     textoNovaTarefa.innerText = textoTarefa
     iconeDeleteTarefa.className = "fa fa-trash-o delete-icon"
 
+    iconeNovaTarefa.onclick = function() {
+        const tarefa = this.parentElement
+        adicionarTarefa(null, tarefa.innerText)
+        localStorage.setItem('lista-a-fazer', toJSON(lstAFazer))
+        tarefa.querySelector(".delete-icon").click()
+    }
+
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
     novaTarefa.appendChild(iconeDeleteTarefa)
@@ -177,6 +184,13 @@ if (localStorage.getItem('lista-feito')) {
         iconeNovaTarefa.className = "fa fa-check-square-o"
         textoNovaTarefa.innerText = li
         iconeDeleteTarefa.className = "fa fa-trash-o delete-icon"
+
+        iconeNovaTarefa.onclick = function() {
+            const tarefa = this.parentElement
+            adicionarTarefa(null, tarefa.innerText)
+            localStorage.setItem('lista-a-fazer', toJSON(lstAFazer))
+            tarefa.querySelector(".delete-icon").click()
+        }
 
         novaTarefa.appendChild(iconeNovaTarefa)
         novaTarefa.appendChild(textoNovaTarefa)

@@ -183,6 +183,14 @@ form {
     color: #999;
 }
 
+.lista_de_tarefas ul#feito li i {
+    color: var(--purple);
+}
+.lista_de_tarefas ul#feito li i:hover {
+    color: var(--green);
+    cursor: pointer;
+}
+
 .lista_de_tarefas ul#feito li span {
     font-style: italic;
     text-decoration: line-through;
