@@ -3,10 +3,11 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 /* Variáveis */
-:root {
+:root,
+html[data-theme='light'] {
     /* Cores */
     --dark: #2A1945;
-    --dark-gray: #545454;
+    --dark-gray: var(--gray-54);
     --purple: #8e54e9;
     --blue: #4776E6;
     --light-orange: #ffac71;
@@ -17,9 +18,71 @@
     --dark-green: #058d39;
     --purple-shadow: #7a49a5;
     --lightpurple: #F3EDFC;
+    --gray-54: #545454;
+    --light-gray: #ccc;
+    --white: #fff;
+    --white-ice: #fefefe;
+    --middle-gray: #999;
 
     /* Tamanhos */
     --window-width: 520px
+}
+
+/* Variáveis Dark Mode */
+html[data-theme='dark'] {
+    /* Cores */
+    --dark: #ffffff;
+    --dark-gray: #cccbcb;
+    --purple: #140532;
+    --blue: #14161a;
+    --light-orange: #580101;
+    --orange: #ff0000;
+    --dark-orange: #e10202;
+    --light-green-post-it: #08340c;
+    --green: #ffffff;
+    --dark-green: #e7e7e7;
+    --purple-shadow: #000000;
+    --lightpurple: #0d011f;
+    --gray-54: #edeaea;
+    --light-gray: #ccc;
+    --white: rgb(0, 0, 0);
+    --white-ice: #000000;
+    --middle-gray: rgb(29, 29, 29);
+
+    /* Tamanhos */
+    --window-width: 520px
+}
+
+html[data-theme='dark'] *,
+html[data-theme='light'] * {
+    transition: color 0.6s ease-in, background 0.6s ease-in;
+}
+
+html[data-theme='dark'] input,
+html[data-theme='dark'] button {
+    background: var(--purple) !important;
+}
+html[data-theme='dark'] span,
+html[data-theme='dark'] span:hover {
+    text-decoration-color: orange !important;
+}
+
+html[data-theme='dark'] button[type=submit] i {
+    color: var(--dark) !important;
+}
+
+html[data-theme='dark'] .delete-icon,
+html[data-theme='dark'] .edit-icon {
+    color: var(--dark);
+}
+
+html[data-theme='dark'] .delete-icon:hover,
+html[data-theme='dark'] .edit-icon:hover {
+    color: var(--orange);
+}
+
+html[data-theme='dark'] footer span {
+    color: white;
 }
 
 /* Reset */
@@ -29,21 +92,29 @@
     margin: 0;
 }
 
-html, body {
+html,
+body {
     border: none;
-    background: var(--blue);  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, var(--purple), var(--blue));  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, var(--purple), var(--blue)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: var(--blue);
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, var(--purple), var(--blue));
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, var(--purple), var(--blue));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     min-height: 100vh;
 }
+
 label {
     display: none;
 }
-.lista_de_tarefas h1, .lista_de_tarefas h2 {
+
+.lista_de_tarefas h1,
+.lista_de_tarefas h2 {
     font-family: 'Raleway', sans-serif;
 }
 
-input, li {
+input,
+li {
     font-size: 1.2rem;
     font-family: 'Jost', sans-serif;
 }
@@ -78,6 +149,7 @@ div.listas {
 form {
     position: relative;
 }
+
 .lista_de_tarefas input[type=text] {
     display: block;
     padding: 20px 60px 20px 20px;
@@ -86,7 +158,7 @@ form {
     border: none;
     font-size: 1.2rem;
     line-height: 1.5;
-    color: #545454;
+    color: var(--gray-54);
     font-weight: 300;
     border-radius: 6px;
     transition: box-shadow 1.2s ease-in-out;
@@ -105,7 +177,7 @@ form {
 .lista_de_tarefas button[type=submit] {
     display: block;
     font-size: 2rem;
-    background: #fff;
+    background: var(--white);
     border: none;
     position: absolute;
     top: 12px;
@@ -141,7 +213,7 @@ form {
     content: " ";
     display: block;
     width: 300%;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid var(--light-gray);
     margin-top: -9px;
     margin-left: -100%;
 
@@ -152,6 +224,7 @@ form {
     color: var(--dark-orange);
     background-color: var(--light-orange);
 }
+
 .lista_de_tarefas #titulo-a-fazer::after {
     border-bottom-color: var(--dark-orange);
 }
@@ -160,6 +233,7 @@ form {
     color: var(--dark-green);
     background-color: var(--light-green-post-it);
 }
+
 .lista_de_tarefas #titulo-feito::after {
     border-bottom-color: var(--dark-green);
 }
@@ -174,6 +248,7 @@ form {
     background-color: var(--light-orange);
     box-shadow: rgb(214, 80, 3, 0.5) -2px 2px, rgb(214, 80, 3, 0.1) -5px 5px;
 }
+
 .lista_de_tarefas ul#feito {
     background-color: var(--light-green-post-it);
     box-shadow: rgba(116, 214, 3, 0.5) -2px 2px, rgba(80, 214, 3, 0.1) -5px 5px;
@@ -190,8 +265,8 @@ form {
     border-radius: 6px;
     font-weight: 300;
     color: var(--dark);
-    transition : box-shadow .3s;
-    background-color: #fefefe;
+    transition: box-shadow .3s;
+    background-color: var(--white-ice);
 }
 
 .lista_de_tarefas ul li span {
@@ -210,9 +285,10 @@ form {
     color: var(--dark);
 }
 
-.lista_de_tarefas ul#feito li i.fa-check-square-o{
+.lista_de_tarefas ul#feito li i.fa-check-square-o {
     color: var(--dark-gray);
 }
+
 .lista_de_tarefas ul#feito li i.fa-check-square-o:hover {
     color: var(--dark-green);
     cursor: pointer;
@@ -232,25 +308,28 @@ form {
 }
 
 /* Deletar item */
-li:hover .delete-icon, 
+li:hover .delete-icon,
 li:hover .edit-icon {
     visibility: visible;
 }
+
 .delete-icon,
 .edit-icon {
     visibility: hidden;
     display: inline-block;
     position: absolute;
-    color: #999;
+    color: var(--middle-gray);
     font-size: 1.5rem;
     right: 6px;
     top: 7px;
     padding: 10px;
     transition: color .5s, visibility 0.2s ease-in;
 }
+
 .edit-icon {
     color: var(--dark-gray);
 }
+
 .delete-icon:hover,
 .edit-icon:hover {
     cursor: pointer;
@@ -259,18 +338,20 @@ li:hover .edit-icon {
 
 /* Lista Vazia */
 .lista-vazia {
-    background: transparent!important;
+    background: transparent !important;
     text-align: center;
     font-style: italic;
-    color: #ccc!important;
-    box-shadow: none !important; 
+    color: var(--light-gray) !important;
+    box-shadow: none !important;
     position: relative;
     padding: 80px 30px 30px 30px !important;
 }
+
 .lista-vazia:hover {
     cursor: default !important;
-    box-shadow: none !important;    
+    box-shadow: none !important;
 }
+
 .lista-vazia i {
     position: absolute;
     font-size: 2em;
@@ -285,6 +366,7 @@ footer {
     width: var(--window-width);
     text-align: center;
 }
+
 footer h1 span {
     display: block;
     font-family: 'Raleway', sans-serif;
@@ -305,19 +387,92 @@ footer h1 span {
         padding: 20px;
         height: auto;
     }
+
     .lista_de_tarefas h1 {
         margin-bottom: 100px;
     }
+
     input::placeholder {
-        font-size: 1rem!important;
+        font-size: 1rem !important;
     }
+
     footer {
         position: absolute;
         top: 60px;
         width: calc(100vw - 17px);
     }
+
     footer h1 span {
         color: var(--dark-gray);
         opacity: 0.7;
     }
+}
+
+
+/* Toogle Them Mode */
+.container-switch {
+    transform: scale(0.6);
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--light-gray);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--dark);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--light-gray);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--blue);
+}
+
+input:checked+.slider:before {
+    background-color: var(--dark-orange);
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
