@@ -22,6 +22,21 @@ const adicionarTarefa = function(event = null, el = false) {
     iconeNovaTarefa.className = "fa fa-square-o"
     textoNovaTarefa.innerText = textoTarefa
 
+    const iconeEditarTarefa = document.createElement("i")
+    iconeEditarTarefa.className = "fa fa-edit edit-icon" 
+
+    iconeEditarTarefa.onclick = function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        document.querySelector("#tarefa").value = iconeEditarTarefa.parentElement.innerText
+        document.querySelector("#tarefa").focus()
+        lstAFazer.removeChild(e.target.parentElement)
+        localStorage.setItem('lista-a-fazer', toJSON(lstAFazer))
+        listaVazia("Adicione tarefas à lista")
+    }
+
+    novaTarefa.appendChild(iconeEditarTarefa)
+
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
     lstAFazer.appendChild(novaTarefa)
