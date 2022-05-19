@@ -12,17 +12,21 @@
         <h1>Lista de tarefas</h1>
         <form>
             <label for="tarefa">Nova Tarefa</label>
-            <input type="text" id="tarefa" autocomplete="off" placeholder="Adicione uma tarefa">
+            <input type="text" id="tarefa" autocomplete="off" placeholder="Insira aqui uma tarefa">
             <button type="submit" id="add_tarefa"><span>Nova Tarefa</span><i class="fa fa-plus-square"></i></button>
         </form>
-        <h2 id="titulo-a-fazer">A fazer:</h2>
-        <ul id="a-fazer">
-            <li class="lista-vazia"><i class="fa fa-file-text"></i> Adicione tarefas à lista</li>
-        </ul>
-        <h2 id="titulo-feito">Feito:</h2>
-        <ul id="feito">
-            <li class="lista-vazia"><i class="fa fa-file-text-o"></i> Nenhuma tarefa concluída</li>
-        </ul>
+        <div class="listas">
+            <h2 id="titulo-a-fazer">A fazer</h2>
+            <ul id="a-fazer">
+                <li class="lista-vazia"><i class="fa fa-file-text"></i> Adicione tarefas à lista</li>
+            </ul>
+        </div>
+        <div class="listas">
+            <h2 id="titulo-feito">Feito</h2>
+            <ul id="feito">
+                <li class="lista-vazia"><i class="fa fa-file-text-o"></i> Nenhuma tarefa concluída</li>
+            </ul>
+        </div>
     </div>
 
     <footer>

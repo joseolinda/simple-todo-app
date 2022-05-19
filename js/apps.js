@@ -4,6 +4,8 @@ const lstFeito = document.querySelector("#feito")
 let listaAFazerEstaVazia = true
 let listaFeitoEstaVazia = true
 
+document.querySelector("#tarefa").focus()
+
 const adicionarTarefa = function(event = null, el = false) {
     if(event) event.preventDefault()
 
@@ -84,12 +86,10 @@ const moverParaFeito = function(ev) {
 
     /* Anexar avento de remover tarefa feita */
     iconeDeleteTarefa.addEventListener("click", removerFeito)
-
     lstAFazer.removeChild(tarefa)
-
+        
     // Salvar no LocalStorage
     localStorage.setItem('lista-a-fazer', toJSON(lstAFazer))
-
     listaVazia("Adicione tarefas à lista")
 }
 

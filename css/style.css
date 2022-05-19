@@ -6,13 +6,15 @@
 :root {
     /* Cores */
     --dark: #2A1945;
-    --darkgray: #545454;
+    --dark-gray: #545454;
     --purple: #8e54e9;
     --blue: #4776E6;
-    --orange: 	#E98E54;
+    --light-orange: #ffac71;
+    --orange: #E98E54;
     --dark-orange: #d65003;
-    --lightgreen: 	#54E98E;
-    --green: 	#2dbe65;
+    --light-green-post-it: #c7e43c;
+    --green: #2dbe65;
+    --dark-green: #058d39;
     --purple-shadow: #7a49a5;
     --lightpurple: #F3EDFC;
 
@@ -58,10 +60,15 @@ input, li {
     box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.45) 0px 50px 100px -20px, rgba(0, 0, 0, 0.6) 0px 30px 30px -30px;
 }
 
+div.listas {
+    position: relative;
+    margin-bottom: 30px;
+}
+
 /* Header */
 .lista_de_tarefas h1 {
     text-transform: uppercase;
-    color: var(--darkgray);
+    color: var(--dark-gray);
     text-align: center;
     padding: 20px 0 10px;
     font-size: 1.2rem;
@@ -74,7 +81,7 @@ form {
 .lista_de_tarefas input[type=text] {
     display: block;
     padding: 20px 60px 20px 20px;
-    margin: 40px 0;
+    margin: 40px 0 30px;
     width: 100%;
     border: none;
     font-size: 1.2rem;
@@ -83,12 +90,12 @@ form {
     font-weight: 300;
     border-radius: 6px;
     transition: box-shadow 0.8s;
-    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    box-shadow: rgba(240, 46, 170, 0.2) -2px 2px, rgba(240, 46, 170, 0.1) -5px 5px;
 }
 
 .lista_de_tarefas input[type=text]:focus {
     outline: none;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
 }
 
 .lista_de_tarefas button[type=submit] span {
@@ -113,15 +120,21 @@ form {
 
 /* Títulos das listas */
 .lista_de_tarefas h2 {
+    position: absolute;
     text-transform: uppercase;
-    color: var(--darkgray);
+    color: var(--dark-gray);
     text-align: center;
     padding: 10px 0;
     font-size: 0.8rem;
-    background: var(--lightpurple);
-    margin: 40px auto 0;
     width: 100px;
     transform-style: preserve-3d;
+
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+    text-align: center;
 }
 
 .lista_de_tarefas h2::after {
@@ -136,22 +149,34 @@ form {
 }
 
 .lista_de_tarefas #titulo-a-fazer {
-    color: var(--orange);
+    color: var(--dark-orange);
+    background-color: var(--light-orange);
 }
 .lista_de_tarefas #titulo-a-fazer::after {
-    border-bottom-color: var(--orange);
+    border-bottom-color: var(--dark-orange);
 }
 
 .lista_de_tarefas #titulo-feito {
-    color: var(--green);
+    color: var(--dark-green);
+    background-color: var(--light-green-post-it);
 }
 .lista_de_tarefas #titulo-feito::after {
-    border-bottom-color: var(--green);
+    border-bottom-color: var(--dark-green);
 }
 
 /* Itens */
 .lista_de_tarefas ul {
-    padding-top: 20px;
+    padding: 60px 20px 40px 20px;
+    border-radius: 6px;
+}
+
+.lista_de_tarefas ul#a-fazer {
+    background-color: var(--light-orange);
+    box-shadow: rgb(214, 80, 3, 0.5) -2px 2px, rgb(214, 80, 3, 0.1) -5px 5px;
+}
+.lista_de_tarefas ul#feito {
+    background-color: var(--light-green-post-it);
+    box-shadow: rgba(116, 214, 3, 0.5) -2px 2px, rgba(80, 214, 3, 0.1) -5px 5px;
 }
 
 .lista_de_tarefas ul li {
@@ -160,44 +185,58 @@ form {
     list-style: none;
     display: block;
     -webkit-user-select: none;
-    padding: 15px 15px 15px 30px;
-    background: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    background: transparent !important;
     border-radius: 6px;
     font-weight: 300;
     color: var(--dark);
-    margin-bottom: 6px;
     transition : box-shadow .3s;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    background-color: #fefefe;
 }
 
 .lista_de_tarefas ul li span {
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
-.lista_de_tarefas ul#a-fazer li:hover {
+.lista_de_tarefas ul#a-fazer li:not(.lista-vazia):hover {
     cursor: pointer;
-    box-shadow: var(--orange) 0px 3px 5px;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 4px;
+    text-decoration-skip: spaces;
+    text-decoration-color: rgb(142, 84, 233, 0.8);
 }
 
 .lista_de_tarefas ul#feito li {
-    color: #999;
+    color: var(--dark);
 }
 
-.lista_de_tarefas ul#feito li i {
-    color: var(--purple);
+.lista_de_tarefas ul#feito li i.fa-check-square-o{
+    color: var(--dark-gray);
 }
-.lista_de_tarefas ul#feito li i:hover {
-    color: var(--green);
+.lista_de_tarefas ul#feito li i.fa-check-square-o:hover {
+    color: var(--dark-green);
     cursor: pointer;
 }
 
 .lista_de_tarefas ul#feito li span {
-    font-style: italic;
-    text-decoration: line-through;
+    letter-spacing: 1px;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 4px;
+    text-decoration-skip: spaces;
+    text-decoration-color: rgb(142, 84, 233, 0.8);
+}
+
+.lista_de_tarefas ul .lista-vazia {
+    color: var(--dark) !important;
+    opacity: 0.7;
 }
 
 /* Deletar item */
+li:hover .delete-icon {
+    visibility: visible;
+}
 .delete-icon {
+    visibility: hidden;
     display: inline-block;
     position: absolute;
     color: #999;
@@ -205,7 +244,7 @@ form {
     right: 6px;
     top: 7px;
     padding: 10px;
-    transition: color .5s;
+    transition: color .5s, visibility 0.2s ease-in;
 }
 .delete-icon:hover {
     cursor: pointer;
@@ -214,13 +253,13 @@ form {
 
 /* Lista Vazia */
 .lista-vazia {
-    background: var(--lightpurple) !important;
+    background: transparent!important;
     text-align: center;
     font-style: italic;
-    color: #999!important;
+    color: #ccc!important;
     box-shadow: none !important; 
     position: relative;
-    padding-top: 50px !important;
+    padding: 80px 30px 30px 30px !important;
 }
 .lista-vazia:hover {
     cursor: default !important;
@@ -229,8 +268,7 @@ form {
 .lista-vazia i {
     position: absolute;
     font-size: 2em;
-    opacity: 0.2;
-    top: 0;
+    top: 20px;
     left: 47%;
     margin: 0 auto;
 }
@@ -273,7 +311,7 @@ footer h1 span {
         width: calc(100vw - 17px);
     }
     footer h1 span {
-        color: var(--darkgray);
+        color: var(--dark-gray);
         opacity: 0.7;
     }
 }
