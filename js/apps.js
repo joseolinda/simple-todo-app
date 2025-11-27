@@ -4,7 +4,31 @@ const lstFeito = document.querySelector("#feito")
 let listaAFazerEstaVazia = true
 let listaFeitoEstaVazia = true
 
+let tarefaArrastada = null
+
 document.querySelector("#tarefa").focus()
+
+const ativarDragAndDrop = function(li) {
+    // Não queremos arrastar mensagens de lista vazia
+    if (li.classList.contains("lista-vazia")) return;
+
+    li.setAttribute("draggable", "true");
+
+    li.addEventListener("dragstart", function (e) {
+        tarefaArrastada = li;
+        li.classList.add("arrastando");
+        // Necessário em alguns navegadores (como Firefox)
+        if (e.dataTransfer) {
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/plain", "");
+        }
+    });
+
+    li.addEventListener("dragend", function () {
+        tarefaArrastada = null;
+        li.classList.remove("arrastando");
+    });
+};
 
 const adicionarTarefa = function(event = null, el = false) {
     if(event) event.preventDefault()
@@ -39,6 +63,8 @@ const adicionarTarefa = function(event = null, el = false) {
 
     novaTarefa.appendChild(iconeNovaTarefa)
     novaTarefa.appendChild(textoNovaTarefa)
+    
+    ativarDragAndDrop(novaTarefa)
     lstAFazer.appendChild(novaTarefa)
 
     if(listaAFazerEstaVazia) {
@@ -94,6 +120,7 @@ const moverParaFeito = function(ev) {
     novaTarefa.appendChild(iconeDeleteTarefa)
 
     limparListaFeito()
+    ativarDragAndDrop(novaTarefa)
     lstFeito.appendChild(novaTarefa)
 
     // Salvar no LocalStorage
@@ -212,6 +239,7 @@ if (localStorage.getItem('lista-feito')) {
         novaTarefa.appendChild(iconeDeleteTarefa)
 
         limparListaFeito()
+        ativarDragAndDrop(novaTarefa)
         lstFeito.appendChild(novaTarefa)
         /* Anexar avento de remover tarefa feita */
         iconeDeleteTarefa.addEventListener("click", removerFeito)
@@ -221,6 +249,43 @@ if (localStorage.getItem('lista-feito')) {
 btnAddTarefa.addEventListener("click", adicionarTarefa)
 
 lstAFazer.addEventListener("click", moverParaFeito)
+
+// Drag and Drop
+// Permitir soltar tarefas na lista "Feito"
+lstFeito.addEventListener("dragover", function (e) {
+    e.preventDefault();
+});
+
+lstFeito.addEventListener("drop", function (e) {
+    e.preventDefault();
+    if (!tarefaArrastada) return;
+
+    // Só faz sentido se o item veio da lista "A fazer"
+    if (tarefaArrastada.parentElement === lstAFazer &&
+        !tarefaArrastada.classList.contains("lista-vazia")) {
+        moverParaFeito({ target: tarefaArrastada });
+    }
+});
+
+// Permitir soltar tarefas na lista "A fazer"
+lstAFazer.addEventListener("dragover", function (e) {
+    e.preventDefault(); // necessário para permitir o drop
+});
+
+lstAFazer.addEventListener("drop", function (e) {
+    e.preventDefault();
+    if (!tarefaArrastada) return;
+
+    // Verificar se veio da lista de "Feito"
+    if (tarefaArrastada.parentElement === lstFeito &&
+        !tarefaArrastada.classList.contains("lista-vazia")) {
+
+        const iconeCheck = tarefaArrastada.querySelector(".fa-check-square-o");
+        if (iconeCheck) {
+            iconeCheck.click();
+        }
+    }
+});
 
 
 // Dark mode
